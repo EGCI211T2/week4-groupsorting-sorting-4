@@ -1,0 +1,145 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: bubble1
+      id: bubble1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: bubble1
+        setup-command: make
+        command: "./sort bubble 1 5 2 3"
+        input: ''
+        expected-output: |-
+          5    1    2    3
+              5    2    1    3
+              5    2    3    1
+
+              5    2    3    1
+              5    3    2    1
+        comparison-method: contains
+        timeout: 10
+        max-score: 11
+    - name: bubble2
+      id: bubble2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: bubble2
+        setup-command: make
+        command: "./sort bubble 1 6 5 2 3"
+        input: ''
+        expected-output: |-
+          6    1    5    2    3
+              6    5    1    2    3
+              6    5    2    1    3
+              6    5    2    3    1
+
+              6    5    2    3    1
+              6    5    2    3    1
+              6    5    3    2    1
+        comparison-method: contains
+        timeout: 10
+        max-score: 12
+    - name: insert1
+      id: insert1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: insert1
+        setup-command: make
+        command: "./sort insertion 6 5 2 3"
+        input: ''
+        expected-output: |2-
+            6    5    2    3
+
+              6    5    2    3
+
+              6    5    2    3
+              6    5    3    2
+        comparison-method: contains
+        timeout: 10
+        max-score: 13
+    - name: insert3
+      id: insert3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: insert3
+        setup-command: make
+        command: "./sort insertion 1 6 5 2 3"
+        input: ''
+        expected-output: |2-
+              6    1    5    2    3
+
+              6    1    1    2    3
+              6    5    1    2    3
+
+              6    5    1    1    3
+              6    5    2    1    3
+
+              6    5    2    1    1
+        comparison-method: contains
+        timeout: 10
+        max-score: 14
+    - name: select1
+      id: select1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: select1
+        setup-command: make
+        command: "./sort selection 1 6 5 2 3"
+        input: ''
+        expected-output: |-
+          6    1    5    2    3
+
+              6    5    1    2    3
+
+              6    5    3    2    1
+
+              6    5    3    2    1
+
+              6    5    3    2    1
+        comparison-method: contains
+        timeout: 10
+        max-score: 15
+    - name: select2
+      id: select2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: select2
+        setup-command: make
+        command: "./sort selection  1 2 5 3 4"
+        input: ''
+        expected-output: |2-
+           5    2    1    3    4
+
+              5    4    1    3    2
+
+              5    4    3    1    2
+
+              5    4    3    2    1
+
+              5    4    3    2    1
+        comparison-method: contains
+        timeout: 10
+        max-score: 16
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        BUBBLE1_RESULTS: "${{steps.bubble1.outputs.result}}"
+        BUBBLE2_RESULTS: "${{steps.bubble2.outputs.result}}"
+        INSERT1_RESULTS: "${{steps.insert1.outputs.result}}"
+        INSERT3_RESULTS: "${{steps.insert3.outputs.result}}"
+        SELECT1_RESULTS: "${{steps.select1.outputs.result}}"
+        SELECT2_RESULTS: "${{steps.select2.outputs.result}}"
+      with:
+        runners: bubble1,bubble2,insert1,insert3,select1,select2
