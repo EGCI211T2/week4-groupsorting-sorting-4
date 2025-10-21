@@ -28,7 +28,7 @@ int main(int argc, char * argv[]) {
     cout<<"Before sorting:";
     display(a,N);
     
-    sort(a,N);
+    //sort(a,N); replace
     cout<<"After sorting:";
     display(a,N);
     
