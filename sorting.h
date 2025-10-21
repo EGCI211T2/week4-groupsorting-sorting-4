@@ -66,7 +66,8 @@ int sort_type(string x)
 
 void display(int *a, int N) {
     for (int i = 1; i < N; i++)
-        cout << a[i] << endl;
+        cout << a[i] << " ";
+    cout << endl;
 }
 
 void swap(int *a, int *b) {
