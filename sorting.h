@@ -1,27 +1,25 @@
-// selection sort function module in C
+void display (int *a, int N);
+void swap(int &a,int &b);
+void selectionSort(int *a,int N);
+void insertion(int *a,int N);
+void display(int *a,int N);
+void doubleSelectionSort(int *a,int N);
 
-void display(int a[],int n){
-
-    int i;
-
-    for(i=0;i<n;i++)
-        printf("%5d",a[i]);
-    printf("\n");
-  
+void display (int *a, int N){
+  for(int i=0;i<N;i++){
+    cout<<*a<<" ";
+    a++;
+  }
+  cout << endl;
 }
 
-void selectionSort(int data[], int length) 
-{ 
-	int i, j, m, mi; 
-	
-     display(data,length);
-     
-	
+void selectionSort(int *a,int N) { 
+
 } 
 
 
 
-void insertion(int a[],int n){
+void insertion(int *a,int N){
 
 
 }
@@ -34,16 +32,8 @@ void swap(int *a,int *b){
   
 }
 
-void bubbleSort(int a[],int n){
+void bubbleSort(int *a,int N){
 
-int i,j;
-int sorted;
-// how may pair to compare?
-for(j=1;j<=n-1;j++){
- 
-  display(a,n);
- }
-  
 }
 
 
