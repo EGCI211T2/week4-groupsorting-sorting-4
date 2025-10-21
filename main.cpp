@@ -4,8 +4,6 @@
 using namespace std;
 #include "sorting.h"
 
-/*There are 2 input format that work for this code, the standard input (the one that github check use) and the ternimal one*/
-
 int main(int argc, char *argv[]) 
 {
  
@@ -16,14 +14,9 @@ int main(int argc, char *argv[])
 
     type = sort_type(argv[1]);
 
-  //case 1: number in terminal
-
-  if (argc > 2)
-  {
      N=argc-1;
     a = new int[N];
 
-    
     for(i=1;i<argc;i++){
         cout<<"argv[" << i<< "]" <<argv[i]<<endl;
     }
@@ -33,23 +26,6 @@ int main(int argc, char *argv[])
       a[i]=atoi(argv[i+1]);
     }
 
-  }
-  else 
-  {
-    int temp[1000];
-    N = 0;
-    while (cin >> temp[N])
-    {
-        N++;
-    }
-
-    a = new int[N];
-    for (i = 0; i < N; i++)
-    {
-      a[i] = temp[i];
-    }
-  }
-
     
     cout<<"Before sorting:" << endl;
     display(a,N);
@@ -58,7 +34,6 @@ int main(int argc, char *argv[])
     cout<<"After sorting:" << endl << "Sorting method: ";
     sort(type,a,N);
     display(a,N);
-    
     
     delete []a;
     return 0;
