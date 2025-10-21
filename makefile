@@ -1,8 +1,9 @@
-compile: main.c 
-	 gcc  main.c -o ll
+DEPS= test
+compile: main.cpp
+	 g++ main.cpp -o $(DEPS)
 
-run: ll
-	 ./ll
+run: $(DEPS)
+	 ./$(DEPS)  $(var)
 
-clean: ll
-	 rm ll
+clean: $(DEPS)
+	 rm $(DEPS)
