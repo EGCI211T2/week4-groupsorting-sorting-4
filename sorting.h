@@ -13,21 +13,21 @@ void sort (int x, int *a, int N)
     switch (x) 
     {
         case 1:
-            cout << "insertion sort" << endl;
+            //cout << "insertion sort" << endl;
             insertion(a,N);
             break;
         case 2:
-            cout << "bubble sort" << endl;
+            //cout << "bubble sort" << endl;
             bubbleSort(a,N);
             break;
 
         case 3:
-            cout << "selection sort" << endl;
+            //cout << "selection sort" << endl;
             selectionSort(a,N);
             break;
 
         case 4:
-            cout << "double selection sort" << endl;
+            //cout << "double selection sort" << endl;
             doubleSelection(a,N);
             break;
 
@@ -65,7 +65,7 @@ int sort_type(string x)
 }
 
 void display(int *a, int N) {
-    for (int i = 1; i < N; i++){
+    for (int i = 0; i < N; i++){
         cout<<std::setw(5)<<a[i];
     }
     cout<<endl;
@@ -134,7 +134,7 @@ void bubbleSort(int a[], int n) {
     for (int j = 0; j < n - 1; j++) {
         int sorted = 1;
         for (int i = 0; i < n - 1 - j; i++) {
-            if (a[i] > a[i + 1]) {
+            if (a[i] < a[i + 1]) {
                 swap(&a[i], &a[i + 1]);
                 sorted = 0;
             }

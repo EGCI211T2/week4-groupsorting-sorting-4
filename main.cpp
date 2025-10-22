@@ -13,22 +13,15 @@ int main(int argc, char *argv[])
 
     type = sort_type(argv[1]);
 
-     N=argc-1;
+    N=argc-2;
     a = new int[N];
 
     /* Convert to numbers*/
     for(int i=0;i<N;i++){
-      a[i]=atoi(argv[i+1]);
+      a[i]=atoi(argv[i+2]);
     }
 
-    
-    cout<<"Before sorting:" << endl;
-    display(a,N);
-    
-    //sort(a,N); replace
-    cout<<"After sorting:" << endl << "Sorting method: ";
     sort(type,a,N);
-    display(a,N);
     
     delete []a;
     return 0;
