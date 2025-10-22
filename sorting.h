@@ -96,9 +96,9 @@ void doubleSelection(int a[], int length) {
     while (left < right) {
         int minI = left, maxI = left;
         for (int i = left; i <= right; i++) {
-            if (a[i] < a[minI])
+            if (a[i] > a[minI])
                 minI = i;
-            if (a[i] > a[maxI])
+            if (a[i] < a[maxI])
                 maxI = i;
         }
 
@@ -121,7 +121,7 @@ void insertion(int a[], int n) {
     for (int i = 1; i < n; i++) {
         int key = a[i];
         int j = i - 1;
-        while (j >= 0 && a[j] > key) {
+        while (j >= 0 && a[j] < key) {
             a[j + 1] = a[j];
             j--;
         }
