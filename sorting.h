@@ -137,8 +137,9 @@ void bubbleSort(int a[], int n) {
             if (a[i] < a[i + 1]) {
                 swap(&a[i], &a[i + 1]);
                 sorted = 0;
+                display(a, n);
             }
-            display(a, n);
+            
         }
         if (sorted) break;
     }
