@@ -65,9 +65,11 @@ int sort_type(string x)
 }
 
 void display(int *a, int N) {
-    for (int i = 1; i < N; i++)
-        cout << a[i] << " ";
-    cout << endl;
+    for (int i = 1; i < N; i++){
+        cout<<std::setw(5)<<a[i];
+    }
+    cout<<endl;
+    
 }
 
 void swap(int *a, int *b) {
@@ -85,7 +87,7 @@ void selectionSort(int data[], int length) {
                 minIndex = j;
         }
         swap(&data[i], &data[minIndex]);
-        //display(data, length);
+        display(data, length);
     }
 }
 
@@ -111,7 +113,7 @@ void doubleSelection(int a[], int length) {
         left++;
         right--;
 
-        //display(a, length);
+        display(a, length);
     }
 }
 
@@ -124,7 +126,7 @@ void insertion(int a[], int n) {
             j--;
         }
         a[j + 1] = key;
-        //display(a, n);
+        display(a, n);
     }
 }
 
@@ -136,8 +138,8 @@ void bubbleSort(int a[], int n) {
                 swap(&a[i], &a[i + 1]);
                 sorted = 0;
             }
+            display(a, n);
         }
-        //display(a, n);
         if (sorted) break;
     }
 }

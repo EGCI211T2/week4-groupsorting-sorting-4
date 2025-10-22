@@ -1,13 +1,12 @@
 #include <iostream>
 #include <cstdlib>
+#include <iomanip>
 
 using namespace std;
 #include "sorting.h"
 
 int main(int argc, char *argv[]) 
 {
- 
-  cout<<"argc is "<<argc<<endl;
     int i,N;
     int type = 0;
     int *a = nullptr;
@@ -16,10 +15,6 @@ int main(int argc, char *argv[])
 
      N=argc-1;
     a = new int[N];
-
-    for(i=1;i<argc;i++){
-        cout<<"argv[" << i<< "]" <<argv[i]<<endl;
-    }
 
     /* Convert to numbers*/
     for(int i=0;i<N;i++){
