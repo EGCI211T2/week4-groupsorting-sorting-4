@@ -42,7 +42,7 @@ int sort_type(string x)
 {
     int n;
     string sortType = x;
-    if (sortType == "insert")
+    if (sortType == "insertion")
     {
         n = 1;
     }
@@ -83,7 +83,7 @@ void selectionSort(int data[], int length) {
     for (i = 0; i < length - 1; i++) {
         minIndex = i;
         for (j = i + 1; j < length; j++) {
-            if (data[j] < data[minIndex])
+            if (data[j] > data[minIndex])
                 minIndex = j;
         }
         swap(&data[i], &data[minIndex]);
@@ -130,7 +130,7 @@ void insertion(int a[], int n) {
     }
 }
 
-void bubbleSort(int a[], int n) {
+void bubbleSort(int a[], int n) { //finished with formating
     for (int j = 0; j < n - 1; j++) {
         int sorted = 1;
         for (int i = 0; i < n - 1 - j; i++) {
@@ -139,7 +139,6 @@ void bubbleSort(int a[], int n) {
                 sorted = 0;
                 display(a, n);
             }
-            
         }
         if (sorted) break;
     }
