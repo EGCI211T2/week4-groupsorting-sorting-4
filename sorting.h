@@ -7,6 +7,37 @@ void display(int *a,int N);
 void doubleSelection(int *a,int N);
 void sort (int x, int *a, int N);
 int sort_type(string x);
+void sort_stat(int x, int *a, int N);
+
+void sort_stat (int x, int *a, int N)
+{
+    switch (x) 
+    {
+        case 1:
+            //cout << "insertion sort" << endl;
+            insertion(a,N);
+            break;
+        case 2:
+            //cout << "bubble sort" << endl;
+            bubbleSort(a,N);
+            break;
+
+        case 3:
+            //cout << "selection sort" << endl;
+            selectionSort(a,N);
+            break;
+
+        case 4:
+            //cout << "double selection sort" << endl;
+            doubleSelection(a,N);
+            break;
+
+        default:
+            cout << "Please choose another sorting method" << endl;
+            break;
+    }
+    
+}
 
 void sort (int x, int *a, int N)
 {
@@ -79,7 +110,7 @@ void swap(int *a, int *b) {
 }
 
 void selectionSort(int data[], int length) {
-    int i, j, minIndex;
+    int i, j, minIndex, c=0;
     for (i = 0; i < length - 1; i++) {
         minIndex = i;
         for (j = i + 1; j < length; j++) {
@@ -87,12 +118,14 @@ void selectionSort(int data[], int length) {
                 minIndex = j;
         }
         swap(&data[i], &data[minIndex]);
-        display(data, length);
+        //display(data, length);  commented for stat testing
+        c++;
     }
+    cout<<"moves: "<<c<<endl;
 }
 
 void doubleSelection(int a[], int length) {
-    int left = 0, right = length - 1;
+    int left = 0, right = length - 1,c=0;
     while (left < right) {
         int minI = left, maxI = left;
         for (int i = left; i <= right; i++) {
@@ -113,11 +146,14 @@ void doubleSelection(int a[], int length) {
         left++;
         right--;
 
-        display(a, length);
+        //display(a, length);  commented for stat testing
+        c++;
     }
+    cout<<"moves: "<<c<<endl; //for stat testing
 }
 
 void insertion(int a[], int n) {
+    int c=0;
     for (int i = 1; i < n; i++) {
         int key = a[i];
         int j = i - 1;
@@ -126,22 +162,27 @@ void insertion(int a[], int n) {
             j--;
         }
         a[j + 1] = key;
-        display(a, n);
+        //display(a, n); commented for stat testing
+        c++;
     }
+    cout<<"moves: "<<c<<endl; //for stat testing
 }
 
 void bubbleSort(int a[], int n) { //finished with formating
+    int c=0;
     for (int j = 0; j < n - 1; j++) {
         int sorted = 1;
         for (int i = 0; i < n - 1 - j; i++) {
             if (a[i] < a[i + 1]) {
                 swap(&a[i], &a[i + 1]);
                 sorted = 0;
-                display(a, n);
+                //display(a, n); commented for stat testing
+                c++;
             }
         }
         if (sorted) break;
     }
+    cout<<"moves: "<<c<<endl;
 }
 
 

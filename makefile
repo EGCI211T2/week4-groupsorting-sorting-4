@@ -6,4 +6,4 @@ run: $(DEPS)
 	 ./$(DEPS)  $(var)
 
 clean: $(DEPS)
-	 rm $(DEPS)
+	 rm $(DEPS)h
