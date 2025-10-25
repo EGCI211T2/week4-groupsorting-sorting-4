@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     int type = 0;
     int *a = nullptr;
 
-    //below is code for statistics
+    #if 0 //statistics code
     int* ptrarr[6];   // same pointer array you already use
 
     // 1. Sorted Large (20000)
@@ -71,23 +71,25 @@ int main(int argc, char *argv[])
       }
     }
 
-    /*
+    for (int k = 0; k < 6; k++) {
+    delete[] ptrarr[k];
+    }
+    #endif
+
+    
     type = sort_type(argv[1]);
 
     N=argc-2;
     a = new int[N];
-    */
-    /* Convert to numbers
+    
+    //Convert to numbers
     for(int i=0;i<N;i++){
       a[i]=atoi(argv[i+2]);
     }
-    */
-
-    //sort(type,a,N);
     
-    //delete []a;
-    for (int k = 0; k < 6; k++) {
-    delete[] ptrarr[k];
-    }
+
+    sort(type,a,N);
+    delete []a;
+    
     return 0;
 }

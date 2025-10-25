@@ -7,6 +7,8 @@ void display(int *a,int N);
 void doubleSelection(int *a,int N);
 void sort (int x, int *a, int N);
 int sort_type(string x);
+
+#if 0 //for stat testing
 void sort_stat(int x, int *a, int N);
 
 void sort_stat (int x, int *a, int N)
@@ -38,6 +40,7 @@ void sort_stat (int x, int *a, int N)
     }
     
 }
+#endif
 
 void sort (int x, int *a, int N)
 {
@@ -110,7 +113,8 @@ void swap(int *a, int *b) {
 }
 
 void selectionSort(int data[], int length) {
-    int i, j, minIndex, c=0;
+    int i, j, minIndex;
+    //int c=0; for stat testing
     for (i = 0; i < length - 1; i++) {
         minIndex = i;
         for (j = i + 1; j < length; j++) {
@@ -118,14 +122,15 @@ void selectionSort(int data[], int length) {
                 minIndex = j;
         }
         swap(&data[i], &data[minIndex]);
-        //display(data, length);  commented for stat testing
-        c++;
+        display(data, length);  //comment for stat testing
+        //c++;
     }
-    cout<<"moves: "<<c<<endl;
+    //cout<<"moves: "<<c<<endl; //for stat testing
 }
 
 void doubleSelection(int a[], int length) {
-    int left = 0, right = length - 1,c=0;
+    int left = 0, right = length - 1;
+    //int c=0; for stat testing
     while (left < right) {
         int minI = left, maxI = left;
         for (int i = left; i <= right; i++) {
@@ -146,14 +151,14 @@ void doubleSelection(int a[], int length) {
         left++;
         right--;
 
-        //display(a, length);  commented for stat testing
-        c++;
+        display(a, length);  //comment for stat testing
+        //c++;
     }
-    cout<<"moves: "<<c<<endl; //for stat testing
+    //cout<<"moves: "<<c<<endl; //for stat testing
 }
 
 void insertion(int a[], int n) {
-    int c=0;
+    //int c=0; for stat testing
     for (int i = 1; i < n; i++) {
         int key = a[i];
         int j = i - 1;
@@ -162,10 +167,10 @@ void insertion(int a[], int n) {
             j--;
         }
         a[j + 1] = key;
-        //display(a, n); commented for stat testing
-        c++;
+        display(a, n); //comment for stat testing
+        //c++;
     }
-    cout<<"moves: "<<c<<endl; //for stat testing
+    //cout<<"moves: "<<c<<endl; for stat testing
 }
 
 void bubbleSort(int a[], int n) { //finished with formating
@@ -176,13 +181,13 @@ void bubbleSort(int a[], int n) { //finished with formating
             if (a[i] < a[i + 1]) {
                 swap(&a[i], &a[i + 1]);
                 sorted = 0;
-                //display(a, n); commented for stat testing
-                c++;
+                display(a, n); //comment for stat testing
+                //c++;
             }
         }
         if (sorted) break;
     }
-    cout<<"moves: "<<c<<endl;
+    //cout<<"moves: "<<c<<endl; //for stat testing
 }
 
 
