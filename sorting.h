@@ -118,7 +118,7 @@ void selectionSort(int data[], int length) {
     for (i = 0; i < length - 1; i++) {
         minIndex = i;
         for (j = i + 1; j < length; j++) {
-            if (data[j] > data[minIndex])
+            if (data[j] < data[minIndex])
                 minIndex = j;
         }
         swap(&data[i], &data[minIndex]);
@@ -134,9 +134,9 @@ void doubleSelection(int a[], int length) {
     while (left < right) {
         int minI = left, maxI = left;
         for (int i = left; i <= right; i++) {
-            if (a[i] > a[minI])
+            if (a[i] < a[minI])
                 minI = i;
-            if (a[i] < a[maxI])
+            if (a[i] > a[maxI])
                 maxI = i;
         }
 
@@ -178,7 +178,7 @@ void bubbleSort(int a[], int n) { //finished with formating
     for (int j = 0; j < n - 1; j++) {
         int sorted = 1;
         for (int i = 0; i < n - 1 - j; i++) {
-            if (a[i] < a[i + 1]) {
+            if (a[i] > a[i + 1]) {
                 swap(&a[i], &a[i + 1]);
                 sorted = 0;
                 display(a, n); //comment for stat testing
