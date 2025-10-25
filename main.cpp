@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     int type = 0;
     int *a = nullptr;
 
-    #if 0 //statistics code
+    #if 0 //statistic code
     int* ptrarr[6];   // same pointer array you already use
 
     // 1. Sorted Large (20000)
@@ -42,19 +42,23 @@ int main(int argc, char *argv[])
 
     int dummy[5] = {3,1,4,2,5};
     sort_stat(1, dummy, 5); // warm-up
-    cout<<"Ignore Warm up above"<<endl;
+    cout<<"Ignore Warm up above"<<endl<<endl;
 
-    for(int i=1;i<=4;i++){
+    for(int i=1;i<=4;i++){ //loop through each algorithms
     
-      for(int j=0;j<6;j++){
+      for(int j=0;j<6;j++){ //loop through the datasets
         int size=(j%2==0 ? 20000:5000);
 
-        //clones the array
-        int*datacpy=new int[size];
-        for(int k=0;k<size;k++){
-          datacpy[k]=ptrarr[j][k];
-        }
       
+        int sum = 0;
+        int loop = 3;
+        for (int l = 0; l < loop; l++)
+        {
+              //clones the array
+            int*datacpy=new int[size];
+            for(int k=0;k<size;k++){
+            datacpy[k]=ptrarr[j][k];
+          }
         //starts timer
         auto start=chrono::high_resolution_clock::now();
 
@@ -65,9 +69,16 @@ int main(int argc, char *argv[])
 
         //calcs the duration
         auto duration=chrono::duration_cast<chrono::milliseconds>(end-start);
-        cout << "Time taken to sort " <<i<<setw(4)<<j<<": "<< duration.count() << " milliseconds\n";
+        //cout << "Time taken to sort " <<i<<setw(4)<<j<<": "<< duration.count() << " milliseconds\n";
+        
+        sum += duration.count();
+        cout << "Run: " << (l + 1) << " | type: " << i << " | dataset " << j << endl << " Time: " << duration.count() << " ms" << endl;
 
-        delete[] datacpy;
+          delete[] datacpy;
+      }
+      cout << "Average time: " << (sum/loop) << " ms " << endl << endl;
+      
+
       }
     }
 
@@ -75,8 +86,8 @@ int main(int argc, char *argv[])
     delete[] ptrarr[k];
     }
     #endif
+  
 
-    
     type = sort_type(argv[1]);
 
     N=argc-2;
@@ -87,7 +98,6 @@ int main(int argc, char *argv[])
       a[i]=atoi(argv[i+2]);
     }
     
-
     sort(type,a,N);
     delete []a;
     

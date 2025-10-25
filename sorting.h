@@ -1,3 +1,6 @@
+long long movecount = 0; //counts swaps
+long long comparecount = 0; //counts comparisons
+
 void display (int *a, int N);
 void swap(int *a,int *b);
 void bubbleSort(int *a, int N);
@@ -13,6 +16,8 @@ void sort_stat(int x, int *a, int N);
 
 void sort_stat (int x, int *a, int N)
 {
+    movecount = 0;
+    comparecount = 0;
     switch (x) 
     {
         case 1:
@@ -38,6 +43,7 @@ void sort_stat (int x, int *a, int N)
             cout << "Please choose another sorting method" << endl;
             break;
     }
+    cout << "Moves: " << movecount << endl << "Comparisons: " << comparecount << endl;
     
 }
 #endif
@@ -106,10 +112,10 @@ void display(int *a, int N) {
     
 }
 
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+void swap(int *a, int *b) { 
+    int temp = *a;  
+    *a = *b;        
+    *b = temp;      
 }
 
 void selectionSort(int data[], int length) {
@@ -118,10 +124,12 @@ void selectionSort(int data[], int length) {
     for (i = 0; i < length - 1; i++) {
         minIndex = i;
         for (j = i + 1; j < length; j++) {
+            comparecount++; // everytime caprison is made
             if (data[j] > data[minIndex])
                 minIndex = j;
         }
         swap(&data[i], &data[minIndex]);
+        movecount++;
         display(data, length);  //comment for stat testing
         //c++;
     }
@@ -134,19 +142,23 @@ void doubleSelection(int a[], int length) {
     while (left < right) {
         int minI = left, maxI = left;
         for (int i = left; i <= right; i++) {
+             comparecount++; // everytime caprison is made
             if (a[i] > a[minI])
                 minI = i;
+            comparecount++; // everytime caprison is made
             if (a[i] < a[maxI])
                 maxI = i;
         }
 
         swap(&a[left], &a[minI]);
+        movecount++;
         
         if (maxI == left){
           maxI = minI;
         }
             
         swap(&a[right], &a[maxI]);
+        movecount++;
 
         left++;
         right--;
@@ -160,13 +172,21 @@ void doubleSelection(int a[], int length) {
 void insertion(int a[], int n) {
     //int c=0; for stat testing
     for (int i = 1; i < n; i++) {
-        int key = a[i];
+        int key = a[i]; 
         int j = i - 1;
-        while (j >= 0 && a[j] < key) {
-            a[j + 1] = a[j];
-            j--;
+        while (j >= 0) {
+            comparecount++; //for everytime the comparison is made
+            if (a[j] < key)
+            {
+                a[j + 1] = a[j]; movecount++;
+                j--;
+            }
+            else 
+            {
+                break;
+            }
         }
-        a[j + 1] = key;
+        a[j + 1] = key; 
         display(a, n); //comment for stat testing
         //c++;
     }
@@ -178,8 +198,10 @@ void bubbleSort(int a[], int n) { //finished with formating
     for (int j = 0; j < n - 1; j++) {
         int sorted = 1;
         for (int i = 0; i < n - 1 - j; i++) {
+            comparecount++; // everytime caprison is made
             if (a[i] < a[i + 1]) {
                 swap(&a[i], &a[i + 1]);
+                movecount++;
                 sorted = 0;
                 display(a, n); //comment for stat testing
                 //c++;
