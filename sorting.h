@@ -125,7 +125,7 @@ void selectionSort(int data[], int length) {
         minIndex = i;
         for (j = i + 1; j < length; j++) {
             comparecount++; // everytime caprison is made
-            if (data[j] > data[minIndex])
+            if (data[j] < data[minIndex])
                 minIndex = j;
         }
         swap(&data[i], &data[minIndex]);
@@ -143,10 +143,10 @@ void doubleSelection(int a[], int length) {
         int minI = left, maxI = left;
         for (int i = left; i <= right; i++) {
              comparecount++; // everytime caprison is made
-            if (a[i] > a[minI])
+            if (a[i] < a[minI])
                 minI = i;
             comparecount++; // everytime caprison is made
-            if (a[i] < a[maxI])
+            if (a[i] > a[maxI])
                 maxI = i;
         }
 
@@ -176,7 +176,7 @@ void insertion(int a[], int n) {
         int j = i - 1;
         while (j >= 0) {
             comparecount++; //for everytime the comparison is made
-            if (a[j] < key)
+            if (a[j] > key)
             {
                 a[j + 1] = a[j]; movecount++;
                 j--;
@@ -199,7 +199,7 @@ void bubbleSort(int a[], int n) { //finished with formating
         int sorted = 1;
         for (int i = 0; i < n - 1 - j; i++) {
             comparecount++; // everytime caprison is made
-            if (a[i] < a[i + 1]) {
+            if (a[i] > a[i + 1]) {
                 swap(&a[i], &a[i + 1]);
                 movecount++;
                 sorted = 0;
