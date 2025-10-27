@@ -132,7 +132,6 @@ void selectionSort(int data[], int length) {
         movecount++;
         display(data, length);  //comment for stat testing
         //c++;
-        cout << endl;
     }
     //cout<<"moves: "<<c<<endl; //for stat testing
 }
@@ -190,7 +189,6 @@ void insertion(int a[], int n) {
         a[j + 1] = key; 
         display(a, n); //comment for stat testing
         //c++;
-        if ((i % 2) == 0) cout << endl;
     }
     //cout<<"moves: "<<c<<endl; for stat testing
 }
