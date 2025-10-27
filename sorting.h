@@ -210,7 +210,6 @@ void bubbleSort(int a[], int n) { //finished with formating
         if (sorted) break;
     }
     //cout<<"moves: "<<c<<endl; //for stat testing
-    cout << endl;
 }
 
 
